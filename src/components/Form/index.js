@@ -1,44 +1,71 @@
 import { Component } from 'react';
 import { PropTypes } from 'prop-types';
+import { Wrapper } from './style';
+import { Row } from './style';
+import { Input } from './style';
+import { Button } from './style';
+import { Comment } from './style';
 
 class Form extends Component {
-
    constructor() {
       super();
 
       this.state = {
          //значення за замовчуванням
-         value: ''
+         value: '',
+         date: new Date().toISOString().substring(0, 10),
+         comment: ''
       }
    }
 
    onSubmit = (e) => {
       e.preventDefault();
-
-      this.props.onChange(this.state.value)
+      // debugger
+      this.props.onChange(this.state)
       this.setState({
-         value: ''
+         value: '',
+         // date: new Date().toISOString().substring(0, 10),
+         comment: ''
       })
    }
 
    onChange = (e) => {
-      const { value } = e.target;
-
+      const { value, name } = e.target;
+      // debugger
       this.setState({
-         value: +value
+         [name]: value
       })
    }
 
    render() {
       return (
-         <form onSubmit={this.onSubmit}>
-            <input name='balance'
-               type='number'
-               placeholder='Сума'
-               value={this.state.value}
-               onChange={this.onChange} />
-            <button>Зберегти</button>
-         </form>
+         <Wrapper>
+            <form onSubmit={this.onSubmit}>
+               <Row>
+                  <Input name='value'
+                     type='number'
+                     placeholder='Сума'
+                     value={this.state.value}
+                     onChange={this.onChange} />
+
+                  <Input name="date"
+                     type="date"
+                     value={this.state.date}
+                     onChange={this.onChange} />
+               </Row>
+
+
+               <Row>
+                  <Button>Зберегти</Button>
+                  <Comment name="comment"
+                     value={this.state.comment}
+                     onChange={this.onChange} />
+               </Row>
+
+
+            </form>
+         </Wrapper>
+
       )
 
    }
