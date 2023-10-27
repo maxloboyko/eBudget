@@ -45,12 +45,13 @@ export const Button = styled.button`
    margin-right: 11px;
    outline: none;
    width: 141px;
+   transition: all 0.4s;
 
    &:hover {
       cursor: pointer;
       background-color: #e0e0e0;
       color: rgba(0, 0, 0, 0.87);
-      border: 1px solid #dbdbdb;
+      border: 1px solid #739b65;
    }
 `;
 Button.displayName = 'Button';
