@@ -4,7 +4,7 @@ import Transaction from ".";
 
 describe('Transaction component', () => {
    it('should show transaction', () => {
-      const sut = shallow(<Transaction />)
+      const sut = shallow(<Transaction />);
       expect(sut).toMatchSnapshot();
    })
 })

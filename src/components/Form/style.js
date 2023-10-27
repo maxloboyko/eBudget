@@ -38,18 +38,19 @@ export const Button = styled.button`
    border-radius: 7px;
    padding: 0 21px;
    box-sizing: border-box;
-   background-color: #e0e0e0;
-   color: rgba(0, 0, 0, 0.87);
+   background-color: #739b65;
+   color: #fff;
    font-size: 18px;
    font-weight: 700;
    margin-right: 11px;
    outline: none;
    width: 141px;
-   background-color: #e0e0e0;
 
    &:hover {
       cursor: pointer;
-      background-color: #739b65;
+      background-color: #e0e0e0;
+      color: rgba(0, 0, 0, 0.87);
+      border: 1px solid #dbdbdb;
    }
 `;
 Button.displayName = 'Button';

@@ -1,16 +1,14 @@
 import { Wrapper, GlobalStyle } from './styles';
 import {
    BrowserRouter as Router,
-   Switch,
    Route,
+   Routes,
    Link
 } from "react-router-dom";
-
 
 import Home from '../Home';
 import About from '../About';
 import Statistics from '../Statistics';
-
 
 const App = () => {
    return (
@@ -32,8 +30,8 @@ const App = () => {
             </nav>
          </Wrapper>
 
-         <Switch>
-            <Route path="/about">
+         <Routes>
+            {/* <Route path="/about">
                <About />
             </Route>
             <Route path="/statistics">
@@ -41,9 +39,13 @@ const App = () => {
             </Route>
             <Route path="/">
                <Home />
-            </Route>
+            </Route> */}
 
-         </Switch>
+            <Route path="/about" element={<About />} />
+            <Route path="/statistics" element={<Statistics />} />
+            <Route path="/" element={<Home />} />
+
+         </Routes>
       </Router>
    )
 
