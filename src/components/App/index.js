@@ -31,20 +31,9 @@ const App = () => {
          </Wrapper>
 
          <Routes>
-            {/* <Route path="/about">
-               <About />
-            </Route>
-            <Route path="/statistics">
-               <Statistics />
-            </Route>
-            <Route path="/">
-               <Home />
-            </Route> */}
-
             <Route path="/about" element={<About />} />
             <Route path="/statistics" element={<Statistics />} />
             <Route path="/" element={<Home />} />
-
          </Routes>
       </Router>
    )
