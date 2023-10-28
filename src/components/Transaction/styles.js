@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-   background-color: ${({ value }) => value < 0 ? '#ffe6e6' : '#d9f3e5'};
+   background-color: ${({ value }) => value < 0 ? '#a13b3b' : '#185534'};
    border: ${({ value }) => value < 0 ? '1px solid #ff8e8e;' : '1px solid #919191;'};
    border-radius: 7px;
    padding: 5px;

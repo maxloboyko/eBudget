@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 // Wrapper
 export const Wrapper = styled.div`
-   background-color: #f4f7fe;
+   background-color: #4f4f4f;
    border: 1px solid #383838;
    border-radius: 7px;
    padding: 5px;
@@ -38,14 +38,14 @@ export const Button = styled.button`
    border-radius: 7px;
    padding: 0 21px;
    box-sizing: border-box;
-   background-color: #739b65;
+   background-color: #217504;
    color: #fff;
    font-size: 18px;
    font-weight: 700;
    margin-right: 11px;
    outline: none;
    width: 141px;
-   transition: all 0.4s;
+   transition: all 0.3s;
 
    &:hover {
       cursor: pointer;

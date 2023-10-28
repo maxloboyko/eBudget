@@ -7,7 +7,8 @@ import ErrorBoundary from '../ErrorBoundary';
 
 import { Wrapper } from './styles';
 
-let id = 0;
+import { getItems, addItem } from "../../utils/indexdb";
+
 
 class Home extends Component {
    // зберігаємо стейт
@@ -20,19 +21,36 @@ class Home extends Component {
 
       // переназначаємо контекст події 
       this.onChange = this.onChange.bind(this);
+      console.log('constructor');
+   }
+
+   componentDidMount() {
+
+      getItems().then((transactions) => {
+         this.setState({
+            transactions
+         })
+      }).catch((e) => {
+         debugger
+      })
    }
 
    onChange = ({ value, date, comment }) => {
+      const transaction = {
+         value: +value,
+         comment,
+         date,
+         id: Date.now()
+      }
       this.setState((state) => ({
          balance: state.balance + Number(value),
-         transactions: [{
-            value: +value,
-            comment,
-            date,
-            id: ++id
-         },
-         ...state.transactions]
+         transactions: [
+            transaction,
+            ...state.transactions]
       }))
+
+      addItem(transaction);
+
    }
 
    render() {

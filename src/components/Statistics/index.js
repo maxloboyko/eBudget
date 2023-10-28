@@ -1,5 +1,9 @@
+import { Wrapper } from './styles';
 const Statistics = () => (
-   <h1>Ststistics page</h1>
+   <Wrapper>
+      <h1>Ststistics page</h1>
+   </Wrapper>
+
 );
 
 export default Statistics;

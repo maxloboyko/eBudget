@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const Wrapper = styled.div`
-   background-color: #eeeeee;
+   background-color: #2d2d2d;
    padding: 15px 15px;
    margin: 15px auto;
    max-width: 800px;
