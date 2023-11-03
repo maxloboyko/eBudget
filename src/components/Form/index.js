@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import { Wrapper } from './style';
 import { Row } from './style';
@@ -6,69 +6,63 @@ import { Input } from './style';
 import { Button } from './style';
 import { Comment } from './style';
 
-class Form extends Component {
-   constructor() {
-      super();
+const Form = (props) => {
+   const [form, setForm] = useState({
+      value: '',
+      date: new Date().toISOString().substring(0, 10),
+      comment: ''
+   })
 
-      this.state = {
-         //значення за замовчуванням
-         value: '',
-         date: new Date().toISOString().substring(0, 10),
-         comment: ''
-      }
-   }
 
-   onSubmit = (e) => {
+   const onSubmit = (e) => {
       e.preventDefault();
       // debugger
-      this.props.onChange(this.state)
-      this.setState({
+      props.onChange(form)
+      setForm({
+         ...form,
          value: '',
-         // date: new Date().toISOString().substring(0, 10),
          comment: ''
       })
    }
 
-   onChange = (e) => {
+   const onChange = (e) => {
       const { value, name } = e.target;
       // debugger
-      this.setState({
+      setForm({
+         ...form,
          [name]: value
       })
    }
 
-   render() {
-      return (
-         <Wrapper>
-            <form onSubmit={this.onSubmit}>
-               <Row>
-                  <Input name='value'
-                     type='number'
-                     placeholder='Сума'
-                     value={this.state.value}
-                     onChange={this.onChange} />
 
-                  <Input name="date"
-                     type="date"
-                     value={this.state.date}
-                     onChange={this.onChange} />
-               </Row>
+   return (
+      <Wrapper>
+         <form onSubmit={onSubmit}>
+            <Row>
+               <Input name='value'
+                  type='number'
+                  placeholder='Сума'
+                  value={form.value}
+                  onChange={onChange} />
+
+               <Input name="date"
+                  type="date"
+                  value={form.date}
+                  onChange={onChange} />
+            </Row>
+
+            <Row>
+               <Button>Зберегти</Button>
+               <Comment name="comment"
+                  value={form.comment}
+                  onChange={onChange} />
+            </Row>
+
+         </form>
+      </Wrapper>
+   )
 
 
-               <Row>
-                  <Button>Зберегти</Button>
-                  <Comment name="comment"
-                     value={this.state.comment}
-                     onChange={this.onChange} />
-               </Row>
-
-
-            </form>
-         </Wrapper>
-
-      )
-
-   }
 }
 
 Form.propTypes = {
