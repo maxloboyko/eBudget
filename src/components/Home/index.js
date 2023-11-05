@@ -18,7 +18,7 @@ const Home = () => {
       getItems().then((item) => {
          setTransactions(item)
       }).catch((e) => {
-         debugger
+         console.error('error')
       })
    }, [setTransactions]);
 
