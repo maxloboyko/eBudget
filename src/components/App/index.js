@@ -10,6 +10,7 @@ import Home from '../Home';
 import About from '../About';
 import Statistics from '../Statistics';
 import Header from '../Header';
+import CurrencyContext from '../../providers/context';
 
 import { Wrapper, GlobalStyle } from './styles';
 
@@ -39,18 +40,21 @@ class App extends React.Component {
          return <div>Loading...</div>
       };
       return (
-         <Router>
-            <Wrapper>
-               <GlobalStyle />
-               <Header />
-            </Wrapper>
+         <CurrencyContext.Provider value={{ currency: 'UAH' }}>
+            <Router>
+               <Wrapper>
+                  <GlobalStyle />
+                  <Header />
+               </Wrapper>
 
-            <Routes>
-               <Route path="/about" element={<About />} />
-               <Route path="/statistics" element={<Statistics />} />
-               <Route path="/" element={<Home />} />
-            </Routes>
-         </Router>
+               <Routes>
+                  <Route path="/about" element={<About />} />
+                  <Route path="/statistics" element={<Statistics />} />
+                  <Route path="/" element={<Home />} />
+               </Routes>
+            </Router>
+         </CurrencyContext.Provider>
+
       )
    }
 
