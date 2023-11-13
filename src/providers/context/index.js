@@ -1,10 +1,38 @@
-import { createContext } from 'react';
+import { createContext, useReducer } from 'react';
+import defaultContext from './defaultContext';
 
-const currency = {
-   value: 'UAH',
-   title: 'гривня'
+const AppContext = createContext();
+
+const reducer = (state, action) => {
+   switch (action.type) {
+      case 'changeCurrency': {
+         return {
+            ...state,
+            currency: action.currency
+         }
+      };
+      case 'reset': {
+         return defaultContext
+      };
+
+      default: {
+         throw new Error('No action');
+      }
+   }
 }
 
-const CurrencyContext = createContext(currency);
+const AppContextProvider = (props) => {
+   const [state, dispatch] = useReducer(reducer, defaultContext);
+   const value = { state, dispatch };
 
-export default CurrencyContext;
+   return (
+      <AppContext.Provider value={value}>
+         {props.children}
+      </AppContext.Provider>
+   )
+}
+
+export {
+   AppContext,
+   AppContextProvider
+}

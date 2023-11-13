@@ -8,9 +8,9 @@ import {
 import { open } from '../../utils/indexdb';
 import Home from '../Home';
 import About from '../About';
+import Settings from '../Settings';
 import Statistics from '../Statistics';
 import Header from '../Header';
-import CurrencyContext from '../../providers/context';
 
 import { Wrapper, GlobalStyle } from './styles';
 
@@ -40,21 +40,19 @@ class App extends React.Component {
          return <div>Loading...</div>
       };
       return (
-         <CurrencyContext.Provider value={{ currency: 'UAH' }}>
-            <Router>
-               <Wrapper>
-                  <GlobalStyle />
-                  <Header />
-               </Wrapper>
+         <Router>
+            <Wrapper>
+               <GlobalStyle />
+               <Header />
+            </Wrapper>
 
-               <Routes>
-                  <Route path="/about" element={<About />} />
-                  <Route path="/statistics" element={<Statistics />} />
-                  <Route path="/" element={<Home />} />
-               </Routes>
-            </Router>
-         </CurrencyContext.Provider>
-
+            <Routes>
+               <Route path="/about" element={<About />} />
+               <Route path="/statistics" element={<Statistics />} />
+               <Route path="/settings" element={<Settings />} />
+               <Route path="/" element={<Home />} />
+            </Routes>
+         </Router>
       )
    }
 
