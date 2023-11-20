@@ -1,13 +1,13 @@
 import { Wrapper } from './styles';
-import { useContext, useCallback, memo } from 'react';
+import { useContext, useMemo, useCallback, memo } from 'react';
 
 import { AppContext } from '../../providers/context';
 
-const Test = ({ onClick }) => {
+const Test = memo(({ data }) => {
    console.log('rendering');
 
-   return <button onClick={onClick}>Click me!</button>
-}
+   return <div>{JSON.stringify(data)}</div>
+})
 
 const Settings = () => {
    const { state, dispatch } = useContext(AppContext);
@@ -19,16 +19,14 @@ const Settings = () => {
       })
    }
 
-   const onClick = () => {
-      console.log('Parent click');
-   }
+   const data = useMemo(() => [2], []);
 
    return (
 
       <Wrapper>
          <h1>Налаштування</h1>
 
-         <Test onClick={onClick} />
+         <Test data={data} />
 
          <div>
             <form>

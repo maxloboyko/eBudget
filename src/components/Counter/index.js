@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import { MemoryRouter } from 'react-router-dom';
 
 const Counter = () => {
    const [clicks, setClicks] = useState(0);
@@ -9,6 +10,11 @@ const Counter = () => {
          alert(clicks)
       }, 3000);
    }
+
+   const d = useMemo(() => {
+      console.log('calculating');
+      return 2 + step + ' - my data';
+   }, [step])
 
    useEffect(() => {
       console.log('render: ', clicks, step);
@@ -23,6 +29,7 @@ const Counter = () => {
    return (
       <div>
          <div>Clicked: {clicks}</div>
+         <h2>{d}</h2>
          <button onClick={() => setClicks(clicks + step)}>Click</button>
          <br />
          <br />
