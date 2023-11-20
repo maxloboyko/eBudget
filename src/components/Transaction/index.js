@@ -1,17 +1,20 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
+import { useContext, useCallback } from 'react';
 
 import { AppContext } from '../../providers/context';
 import { Wrapper, TransactionDate, Value, Comment } from './styles';
 
-const Transaction = ({ transaction: { value, date, comment } }) => {
+const Transaction = ({ transaction: { id, value, date, comment }, onDelete }) => {
    const { state } = useContext(AppContext);
+
+   const deleteItem = useCallback(() => onDelete(id), [id]);
 
    return (
       <Wrapper value={value}>
          <TransactionDate>{date}</TransactionDate>
          <Value>{value.toFixed(2)}, {state.currency}</Value>
          <Comment>{comment}</Comment>
+         <button onClick={deleteItem}>Delete</button>
       </Wrapper>
    );
 }

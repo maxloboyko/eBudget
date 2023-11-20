@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import Balance from '../Balance';
 import Transactions from '../Transactions';
@@ -44,13 +44,17 @@ const Home = () => {
 
    }
 
+   const onDelete = useCallback((id) => {
+      setTransactions((transactions) => transactions.filter((item) => item.id !== id))
+   }, [setTransactions]);
+
    return (
       <ErrorBoundary>
          <Wrapper>
             <Balance balance={balance} />
             <Form onChange={onChange} />
             <hr />
-            <Transactions transactions={transactions} />
+            <Transactions transactions={transactions} onDelete={onDelete} />
          </Wrapper>
       </ErrorBoundary>
 
