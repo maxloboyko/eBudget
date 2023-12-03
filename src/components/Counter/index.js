@@ -1,20 +1,19 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
 const Counter = () => {
    const [clicks, setClicks] = useState(0);
    const [step, setStep] = useState(1);
 
-   const showValue = () => {
-      setTimeout(() => {
-         alert(clicks)
-      }, 3000);
-   }
+   const currentValue = useRef(0);
 
-   const d = useMemo(() => {
-      console.log('calculating');
-      return 2 + step + ' - my data';
-   }, [step])
+   const showValue = () => {
+      console.log(currentValue);
+      debugger
+      setTimeout(() => {
+         alert(currentValue.current);
+      }, 3000);
+   };
 
    useEffect(() => {
       console.log('render: ', clicks, step);
@@ -29,14 +28,13 @@ const Counter = () => {
    return (
       <div>
          <div>Clicked: {clicks}</div>
-         <h2>{d}</h2>
          <button onClick={() => setClicks(clicks + step)}>Click</button>
          <br />
          <br />
          <button onClick={showValue}>Show Value</button>
          <br />
          <br />
-         <input name='step' value={step} onChange={(e) => setStep(+e.target.value)} />
+         <input ref={currentValue} name='step' value={step} onChange={(e) => setStep(+e.target.value)} />
       </div>
    )
 };
